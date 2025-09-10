@@ -1,7 +1,19 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            @if(isset($currentApp) && $currentApp)
+                <div class="text-center">
+                    @if($currentApp->logo)
+                        <img src="{{ asset('storage/'.$currentApp->logo) }}" alt="logo" style="width:72px;height:72px;object-fit:cover;border-radius:12px;" class="mx-auto">
+                    @endif
+                    <div class="mt-2 fw-semibold">{{ $currentApp->nombre }}</div>
+                    @if($currentApp->descripcion_corta)
+                        <div class="text-muted small">{{ $currentApp->descripcion_corta }}</div>
+                    @endif
+                </div>
+            @else
+                <x-authentication-card-logo />
+            @endif
         </x-slot>
 
         <x-validation-errors class="mb-4" />

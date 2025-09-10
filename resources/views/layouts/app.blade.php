@@ -11,6 +11,19 @@
 		<!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
+				@php(
+					$roleIds = Auth::check() ? Auth::user()->roles()->pluck('id') : collect()
+				)
+				@if((!isset($currentApp) || !$currentApp) && Auth::check())
+					@php($canSeeCore = \App\Models\RoleAppVisibility::whereIn('role_id', $roleIds)->whereNull('application_id')->exists())
+					@if(!$canSeeCore)
+						@include('components.alert', [
+							'type' => 'warning',
+							'dismissible' => false,
+							'slot' => 'Rol sin aplicaciones asignadas. Contacte al administrador para asignar aplicaciones visibles a su rol.'
+						])
+					@endif
+				@endif
 				@yield('content')
 			</div>
 		</div>
@@ -24,4 +37,5 @@
 	<!--end wrapper-->
 	<!--start switcher-->
 	@include('layouts.switcher')
+	@stack('modals')
 	@include('layouts.scripts')

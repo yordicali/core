@@ -1,5 +1,10 @@
+@php
+  if (!isset($attributes) || !($attributes instanceof \Illuminate\View\ComponentAttributeBag)) {
+      $attributes = new \Illuminate\View\ComponentAttributeBag;
+  }
+@endphp
 @props([
-  'type' => 'button', // button|submit|reset
+  'type' => 'submit', // button|submit|reset
   'variant' => 'primary', // primary|secondary|...
   'outline' => false,
   'size' => null, // sm|lg|null
@@ -7,7 +12,7 @@
   'icon' => null, // e.g. 'bx bx-plus'
 ])
 @php
-  $classes = 'btn '.($outline ? 'btn-outline-' : 'btn-').$variant.($size ? ' btn-'.$size : '');
+  $classes = 'radius-30 btn '.($outline ? 'btn-outline-' : 'btn-').$variant.($size ? ' btn-'.$size : '');
 @endphp
 @if($href)
   <a href="{{ $href }}" {{ $attributes->class($classes) }}>
@@ -20,4 +25,3 @@
     {{ $slot }}
   </button>
 @endif
-
