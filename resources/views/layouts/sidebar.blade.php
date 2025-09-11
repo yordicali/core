@@ -81,8 +81,15 @@
 							<div class="menu-title">Funciones</div>
 						</a>
 						</li>
+					<li>
+						<a href="{{ route('role-apps.index') }}">
+							<div class="parent-icon"><i class="bx bx-category"></i>
+							</div>
+							<div class="menu-title">Apps roles</div>
+						</a>
+						</li>
 					@endif
 				@endif
-				</ul>
+			</ul>
 			<!--end navigation-->
 		</div>
