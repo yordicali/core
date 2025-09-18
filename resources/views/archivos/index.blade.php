@@ -4,27 +4,40 @@
   <div class="d-flex align-items-center justify-content-between mb-3">
     <h4 class="mb-0">Gestor de archivos</h4>
   </div>
-
   <div class="row mb-3">
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="text-muted">Archivos totales</div>
-          <div class="fs-4 fw-semibold" id="totalFiles">{{ $totalCount ?? 0 }}</div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="text-muted">Espacio usado</div>
-          @php $totalMB = isset($totalSize) ? number_format(($totalSize/1048576), 2) : number_format(0,2); @endphp
-          <div class="fs-4 fw-semibold"><span id="totalSizeMB">{{ $totalMB }}</span> MB</div>
-        </div>
-      </div>
-    </div>
+  <div class="col-4">
+    <div class="card radius-10 border-start border-0 border-3 border-info">
+						<div class="card-body">
+							<div class="d-flex align-items-center">
+								<div>
+									<p class="mb-0 text-secondary">Archivos totales</p>
+									<h4 class="my-1 text-info" id="totalFiles">{{ $totalCount ?? 0 }}</h4>
+									<p class="mb-0 font-13">Se actualiza en tiempo real</p>
+								</div>
+								<div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="bx bxs-file"></i>
+								</div>
+							</div>
+						</div>
+					 </div>
   </div>
-
+    <div class="col-4">
+    <div class="card radius-10 border-start border-0 border-3 border-warning">
+						<div class="card-body">
+							<div class="d-flex align-items-center">
+								<div>
+									<p class="mb-0 text-secondary">Espacio usado</p>
+                  @php $totalMB = isset($totalSize) ? number_format(($totalSize/1048576), 2) : number_format(0,2); @endphp
+									<h4 class="my-1 text-warning" id="totalSizeMB">{{ $totalMB }} MB</h4>
+									<p class="mb-0 font-13">Se actualiza en tiempo real</p>
+								</div>
+								<div class="widgets-icons-2 rounded-circle bg-warning text-white ms-auto"><i class="bx bxs-folder"></i>
+								</div>
+							</div>
+						</div>
+					 </div>
+  </div>
+  </div>
+  
   @if(session('status'))
     @include('components.alert', [
       'type' => 'success',
