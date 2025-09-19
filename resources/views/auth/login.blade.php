@@ -4,15 +4,15 @@
             @if(isset($currentApp) && $currentApp)
                 <div class="text-center">
                     @if($currentApp->logo)
-                        <img src="{{ asset('storage/'.$currentApp->logo) }}" alt="logo" style="width:72px;height:72px;object-fit:cover;border-radius:12px;" class="mx-auto">
+                        <img src="{{ asset('storage/'.$currentApp->logo) }}" alt="logo" style="width:302px;height:202px;object-fit:cover;border-radius:12px" class="mx-auto">
+                    @else
+                    
+                    <img src="{{asset('assets/images/logo/logotvo.png')}}" alt="logo" style="width:202px;height:202px;object-fit:cover;border-radius:12px">
                     @endif
-                    <div class="mt-2 fw-semibold">{{ $currentApp->nombre }}</div>
-                    @if($currentApp->descripcion_corta)
-                        <div class="text-muted small">{{ $currentApp->descripcion_corta }}</div>
-                    @endif
+              
                 </div>
             @else
-                <x-authentication-card-logo />
+                <img src="{{asset('assets/images/logo/logotvo.png')}}" alt="logo" style="width:202px;height:202px;object-fit:cover;border-radius:12px;">
             @endif
         </x-slot>
 
@@ -47,13 +47,19 @@
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('¿Recuperar contraseña?') }}
                     </a>
                 @endif
+<style>
+    :root {
+        --primary-color: {{ isset($currentApp->color_base) && $currentApp->color_base ? $currentApp->color_base : '#000000ff' }};
+    }
+</style>
+<x-button class="ml-4 btn-elegante">
+    {{ __('Ingresar') }}
+</x-button>
 
-                <x-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-button>
+
             </div>
         </form>
     </x-authentication-card>

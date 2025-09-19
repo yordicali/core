@@ -4,12 +4,13 @@
     <div class="col-md-6">
       <div class="text-center mb-3">
         @if($app->logo)
-          <img src="{{ asset('storage/'.$app->logo) }}" alt="logo" style="width:96px;height:96px;object-fit:cover;border-radius:12px;">
+          <img src="{{ asset('storage/'.$app->logo) }}" alt="logo" style="object-fit:cover;border-radius:12px;">
+        @else
+        
+        <img src="{{asset('assets/images/logo/logotvo.png')}}" alt="logo" style="object-fit:cover;border-radius:12px;">
         @endif
         <h3 class="mt-2">{{ $app->nombre }}</h3>
-        @if($app->descripcion_corta)
-          <div class="text-muted">{{ $app->descripcion_corta }}</div>
-        @endif
+
       </div>
       <div class="card">
         <div class="card-body text-center">

@@ -36,6 +36,6 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-	@include('layouts.switcher')
+	
 	@stack('modals')
 	@include('layouts.scripts')

@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="{{asset('assets/images/favicon-32x32.png')}}" type="image/png" />
+	
 	<!--plugins-->
 	<link href="{{asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet"/>
 	<link href="{{asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
@@ -25,6 +25,18 @@
 	<link rel="stylesheet" href="{{asset('assets/css/dark-theme.css')}}" />
 	<link rel="stylesheet" href="{{asset('assets/css/semi-dark.css')}}" />
 	<link rel="stylesheet" href="{{asset('assets/css/header-colors.css')}}" />
-	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
-    @livewireStyles
+	
+	
+	@if(isset($currentApp) && $currentApp)
+      @if($currentApp->nombre)
+          <title>{{ $currentApp->nombre }}</title>
+		  <link rel="icon" href="{{ $currentApp->logo }}" type="image/png" />
+      @else
+          <title>{{ config('app.name', 'CoreTvo') }}</title>
+		  <link rel="icon" href="{{asset('assets/images/logo/logotvo.png')}}" type="image/png" />
+      @endif
+	@else
+		<title>{{ config('app.name', 'CoreTvo') }}</title>
+		<link rel="icon" href="{{asset('assets/images/logo/logotvo.png')}}" type="image/png" />
+	@endif
 </head>
